@@ -1,3 +1,4 @@
+import FeaturedToday from "./components/FeaturedToday"
 import Header from "./components/Header"
 import TrailerList from "./components/TrailerList"
 import VideoSection from "./components/VideoSection"
@@ -15,12 +16,10 @@ export default function Home() {
             <TrailerList />
           </div>
         </section>
+        <section>
+          <FeaturedToday />
+        </section>
       </main>
-      <footer className="bg-gray-100 py-4">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2023 My Website. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   )
 }
