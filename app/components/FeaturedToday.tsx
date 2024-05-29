@@ -4,7 +4,7 @@ import { AiOutlineFileText, AiOutlinePicture } from "react-icons/ai"
 
 const FeaturedToday = () => {
   return (
-    <div className="bg-black text-white p-6">
+    <div className="bg-black text-white p-6 ml-6">
       <h2 className="text-yellow-500 text-3xl font-bold mb-4">
         Featured today
       </h2>
@@ -44,11 +44,6 @@ const FeaturedToday = () => {
             </button>
           </div>
         </div>
-      </div>
-      <div className="mt-4 text-right mr-14">
-        <a href="#" className="text-blue-400 text-sm font-bold">
-          Get more recommendations {">"}
-        </a>
       </div>
     </div>
   )

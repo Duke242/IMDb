@@ -2,6 +2,7 @@ import FeaturedToday from "./components/FeaturedToday"
 import Header from "./components/Header"
 import TrailerList from "./components/TrailerList"
 import VideoSection from "./components/VideoSection"
+import WhatToWatch from "./components/WhatToWatch"
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         </section>
         <section>
           <FeaturedToday />
+          <WhatToWatch />
         </section>
       </main>
     </div>
