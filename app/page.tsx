@@ -1,5 +1,6 @@
 import FeaturedToday from "./components/FeaturedToday"
 import Header from "./components/Header"
+import MovieList from "./components/MovieList"
 import TrailerList from "./components/TrailerList"
 import VideoSection from "./components/VideoSection"
 import WhatToWatch from "./components/WhatToWatch"
@@ -20,6 +21,7 @@ export default function Home() {
         <section>
           <FeaturedToday />
           <WhatToWatch />
+          <MovieList />
         </section>
       </main>
     </div>
