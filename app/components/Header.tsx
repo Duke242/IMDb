@@ -29,7 +29,7 @@ function Header() {
                       type="text"
                       name="search"
                       placeholder="Search IMDb"
-                      className="px-3 flex-grow py-1 focus:outline-none text-sm"
+                      className="px-3 flex-grow py-1 focus:outline-none text-sm text-black"
                     />
                     <button
                       type="submit"
@@ -52,18 +52,18 @@ function Header() {
             />
           </div>
           <div className="flex items-center space-x-4">
-            <a className="flex text-white hover:bg-gray-800 p-2 transition gap-2 rounded cursor-pointer items-center">
+            <a className="flex text-white text-sm font-semibold hover:bg-gray-800 p-2 transition gap-2 rounded cursor-pointer items-center">
               <BsBookmarkPlusFill size={20} /> Watchlist
             </a>
-            <a className="text-white hover:bg-gray-800 p-2 transition rounded cursor-pointer">
+            <a className="text-white hover:bg-gray-800 p-2 text-sm font-semibold transition rounded cursor-pointer">
               Sign In
             </a>
             <select className="px-2 py-1 rounded-md focus:outline-none text-white bg-black">
               <option value="en">EN</option>
               <option value="es">ES</option>
               <option value="fr">FR</option>
-              <IoMdArrowDropdown />
             </select>
+            <IoMdArrowDropdown />
           </div>
         </div>
       </div>
