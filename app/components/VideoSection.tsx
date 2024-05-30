@@ -5,8 +5,32 @@ import React, { useState } from "react"
 import { CgPlayButtonO } from "react-icons/cg"
 import { FaRegThumbsUp, FaHeart } from "react-icons/fa"
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi"
+import { BsBookmarkPlusFill } from "react-icons/bs"
+import toast from "react-hot-toast"
 
-const VideoSection: React.FC = () => {
+interface User {
+  name: string
+  email: string
+  image: string
+}
+
+interface Session {
+  user: User | null
+}
+
+function isUserLoggedIn(session: Session | null): boolean {
+  return session?.user !== undefined
+}
+
+interface VideoSectionProps {
+  session: Session
+}
+
+const VideoSection: React.FC<VideoSectionProps> = ({
+  session,
+}: {
+  session: Session
+}) => {
   const { data } = useQuery({ queryKey: ["movies"], queryFn: getMovies })
   const [showMovieInfo, setShowMovieInfo] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -32,21 +56,59 @@ const VideoSection: React.FC = () => {
         className="w-full"
         style={{ height: "550px" }}
       />
+
       <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black via-transparent bg-opacity-50">
         <div className="relative flex justify-center w-full mb-4 px-4">
-          <img
-            src={thumbnail}
-            className="w-24 h-32 sm:w-32 sm:h-44 lg:w-44 lg:h-64 absolute left-2 bottom-0"
-            alt={title}
-          />
+          <div className="relative">
+            <div className="absolute top-0 left-1 text-red-500 text-2xl z-10">
+              <div
+                onClick={(e) => {
+                  e.stopPropagation()
+                  if (!isUserLoggedIn(session)) {
+                    toast.error("You need to be logged in to bookmark movies.")
+                    return
+                  }
+                  console.log("working")
+                  const movieInfo = {
+                    thumbnail,
+                    title,
+                    rating,
+                    likes,
+                    overview,
+                  }
+                  const storedMovieData = localStorage.getItem("movieData")
+                  let movieData = storedMovieData
+                    ? JSON.parse(storedMovieData)
+                    : []
+                  movieData.push(movieInfo)
+                  localStorage.setItem("movieData", JSON.stringify(movieData))
+                  console.log(localStorage.getItem("movieData"))
+                  toast.success("Movie bookmarked successfully!")
+                }}
+              >
+                <BsBookmarkPlusFill
+                  size={40}
+                  color="gray"
+                  className="hover:scale-110 transition"
+                />
+              </div>
+            </div>
+            <img
+              src={thumbnail}
+              className="w-24 h-32 sm:w-32 sm:h-44 lg:w-44 lg:h-64 relative left-2 bottom-0"
+              alt={title}
+            />
+          </div>
           <div className="relative w-full flex text-left text-white py-2 rounded-lg bg-opacity-70 transition-colors duration-300 ease-in-out hover:bg-opacity-90 cursor-pointer">
             <div className="flex items-center w-full">
-              <div className="ml-28 lg:ml-48 xl:ml-52">
-                <CgPlayButtonO
-                  size={80}
-                  color={isHovered ? "yellow" : "white"}
-                  className="transition-colors duration-300 ease-in-out"
-                />
+              <div className="ml-4">
+                <div className="ml-4 relative">
+                  <CgPlayButtonO
+                    size={80}
+                    color={isHovered ? "yellow" : "white"}
+                    className="transition-colors duration-300 ease-in-out"
+                  />
+                </div>
               </div>
               <div className="ml-4">
                 <div className="text-2xl flex items-center">
@@ -94,10 +156,10 @@ const VideoSection: React.FC = () => {
           </div>
         </div>
       )}
-      <button className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 hover:bg-opacity-75 ml-4">
+      <button className="absolute left-0 top-1/3 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 hover:bg-opacity-75 ml-4">
         <FiChevronLeft size={40} color="white" />
       </button>
-      <button className="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 hover:bg-opacity-75 mr-4">
+      <button className="absolute right-0 top-1/3 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 hover:bg-opacity-75 mr-4">
         <FiChevronRight size={40} color="white" />
       </button>
     </div>

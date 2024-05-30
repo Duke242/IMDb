@@ -47,7 +47,7 @@ export default async function Home({ dehydratedState }: any) {
         <main className="py-8">
           <section className="flex justify-around space-x-8">
             <div className="w-2/3 ml-14 flex-grow">
-              <VideoSection />
+              <VideoSection session={session as Session} />
             </div>
             <div className="w-1/3">
               <TrailerList />

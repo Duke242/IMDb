@@ -63,7 +63,7 @@ const TrailerList = () => {
               {movie.overview.split(" ").slice(0, 10).join(" ")}...
             </p>
             <div className="flex items-center mt-2">
-              <span className="flex gap-2 mr-4 text-gray-400">
+              <span className="flex gap-2 mr-4 text-white">
                 <FaThumbsUp /> {movie.likes}
               </span>
               <span className="flex items-center gap-1 text-gray-400">
