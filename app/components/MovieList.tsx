@@ -17,10 +17,10 @@ const movies = [
 const MovieList = () => {
   return (
     <div className="flex flex-col">
-      <h1 className="text-white text-xl font-bold border-l-4 border-yellow-500 pl-2 ml-6 h-fit mb-4">
+      <h1 className="text-white text-xl font-bold border-l-4 border-yellow-500 pl-2 ml-12 h-fit mb-4">
         Top 10 on IMDb this week
       </h1>
-      <div className="flex ml-6 bg-black">
+      <div className="flex ml-12 bg-black">
         {movies.map((movie) => (
           <div
             key={movie.id}

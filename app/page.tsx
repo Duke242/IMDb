@@ -1,9 +1,4 @@
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-  useQuery,
-} from "@tanstack/react-query"
+import { HydrationBoundary, QueryClient } from "@tanstack/react-query"
 import FanFavorites from "./components/FanFavorites"
 import FeaturedToday from "./components/FeaturedToday"
 import Header from "./components/Header"
