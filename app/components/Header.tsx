@@ -3,6 +3,8 @@ import { IoMdSearch, IoMdArrowDropdown } from "react-icons/io"
 import { BsBookmarkPlusFill } from "react-icons/bs"
 import { IoMenu } from "react-icons/io5"
 import { signOut } from "next-auth/react"
+import { useState } from "react"
+import { fetchData } from "@/libs/performSearch"
 
 interface User {
   name: string
@@ -19,6 +21,27 @@ function isUserLoggedIn(session: Session | null): boolean {
 }
 
 function Header({ session }: { session: Session }) {
+  const [searchQuery, setSearchQuery] = useState("")
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleSearch = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value
+    setSearchQuery(query)
+
+    if (query) {
+      try {
+        const data = await fetchData(query)
+        const results = JSON.parse(data).results
+        setSearchResults(results)
+      } catch (error) {
+        console.error("Error fetching search results:", error)
+        setSearchResults([])
+      }
+    } else {
+      setSearchResults([])
+    }
+  }
+
   return (
     <header className="bg-black py-3">
       <div className="container mx-auto flex items-center justify-between">
@@ -45,6 +68,8 @@ function Header({ session }: { session: Session }) {
                       name="search"
                       placeholder="Search IMDb"
                       className="px-3 flex-grow py-1 focus:outline-none text-sm text-black"
+                      value={searchQuery}
+                      onChange={handleSearch}
                     />
                     <button
                       type="submit"
@@ -54,6 +79,24 @@ function Header({ session }: { session: Session }) {
                     </button>
                   </form>
                 </div>
+                {searchQuery && searchResults.length > 0 && (
+                  <div className="absolute mt-2 bg-black rounded shadow-lg z-50 w-1/3">
+                    {searchResults.map(
+                      (result: { id: string; name: string }) => (
+                        <div
+                          key={result.id}
+                          className="px-4 py-2 hover:bg-gray-700 transition cursor-pointer"
+                          onClick={() => {
+                            setSearchQuery(result.name)
+                            setSearchResults([])
+                          }}
+                        >
+                          {result.name}
+                        </div>
+                      )
+                    )}
+                  </div>
+                )}
               </li>
             </ul>
           </nav>
