@@ -54,7 +54,7 @@ function Header({ session }: { session: Session }) {
           </div>
           <nav className="flex-grow">
             <ul className="flex items-center space-x-6 text-white">
-              <li className="flex items-center text-sm font-semibold">
+              <li className="flex items-center text-sm font-semibold hover:bg-gray-800 p-2 text-sm transition rounded cursor-pointer">
                 <IoMenu color="white" size={25} /> Menu
               </li>
               <li className="flex-grow">

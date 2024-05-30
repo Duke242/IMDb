@@ -58,7 +58,7 @@ export default async function Home({ dehydratedState }: any) {
               <FeaturedToday />
             </section>
             <section>
-              <WhatToWatch />
+              <WhatToWatch session={session as Session} />
             </section>
             <section className="mb-14">
               <MovieList />
