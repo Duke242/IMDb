@@ -1,11 +1,11 @@
 "use client"
 import React, { useState } from "react"
 import { CgPlayButtonO } from "react-icons/cg"
-import { FaThumbsUp } from "react-icons/fa"
 import { HiHeart } from "react-icons/hi"
 import { FiX } from "react-icons/fi"
 import { useQuery } from "@tanstack/react-query"
 import { getMovies } from "@/libs/getMovies"
+import { FaRegThumbsUp } from "react-icons/fa"
 
 type Movie = {
   id: number
@@ -64,10 +64,10 @@ const TrailerList = () => {
             </p>
             <div className="flex items-center mt-2">
               <span className="flex gap-2 mr-4 text-white">
-                <FaThumbsUp /> {movie.likes}
+                <FaRegThumbsUp /> {movie.likes}
               </span>
               <span className="flex items-center gap-1 text-gray-400">
-                <HiHeart />
+                <HiHeart color="red" />
               </span>
             </div>
           </div>
@@ -90,7 +90,7 @@ const TrailerList = () => {
                 <span>{selectedMovie.rating}</span>
               </div>
               <div className="flex items-center gap-2">
-                <FaThumbsUp />
+                <FaRegThumbsUp />
                 <span>{selectedMovie.likes} likes</span>
               </div>
             </div>
