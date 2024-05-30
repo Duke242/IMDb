@@ -9,12 +9,10 @@ const FeaturedToday = () => {
         Featured today
       </h2>
       <div className="relative flex items-center space-x-4">
-        {/* Arrow left */}
         <button className="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-black bg-opacity-50 rounded-full hover:bg-opacity-75">
           <FiChevronLeft size={30} color="white" />
         </button>
 
-        {/* Content */}
         <div className="flex space-x-4 overflow-hidden">
           <div className="relative w-96 h-48">
             <img src="moana.jpeg" alt="Mandy" className="w-full h-auto " />

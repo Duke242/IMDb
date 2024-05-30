@@ -1,5 +1,5 @@
 import React from "react"
-import { CgPlayButton, CgChevronLeft, CgChevronRight } from "react-icons/cg"
+import { CgPlayButton } from "react-icons/cg"
 import { FiChevronRight } from "react-icons/fi"
 
 type Movie = {
@@ -12,7 +12,55 @@ type Movie = {
   trailerUrl: string
 }
 
-const FanFavorites = ({ movies }: { movies: Movie[] }) => {
+const movies: Movie[] = [
+  {
+    id: 1,
+    ranking: 1,
+    title: "The Shawshank Redemption",
+    subtitle: "Drama",
+    imageUrl: "https://via.placeholder.com/150",
+    rating: 9.3,
+    trailerUrl: "https://example.com/shawshank-trailer",
+  },
+  {
+    id: 2,
+    ranking: 2,
+    title: "The Godfather",
+    subtitle: "Crime, Drama",
+    imageUrl: "https://via.placeholder.com/150",
+    rating: 9.2,
+    trailerUrl: "https://example.com/godfather-trailer",
+  },
+  {
+    id: 3,
+    ranking: 3,
+    title: "The Dark Knight",
+    subtitle: "Action, Crime, Drama",
+    imageUrl: "https://via.placeholder.com/150",
+    rating: 9.0,
+    trailerUrl: "https://example.com/dark-knight-trailer",
+  },
+  {
+    id: 4,
+    ranking: 4,
+    title: "Pulp Fiction",
+    subtitle: "Crime, Drama",
+    imageUrl: "https://via.placeholder.com/150",
+    rating: 8.9,
+    trailerUrl: "https://example.com/pulp-fiction-trailer",
+  },
+  {
+    id: 5,
+    ranking: 5,
+    title: "Forrest Gump",
+    subtitle: "Drama, Romance",
+    imageUrl: "https://via.placeholder.com/150",
+    rating: 8.8,
+    trailerUrl: "https://example.com/forrest-gump-trailer",
+  },
+]
+
+const FanFavorites = () => {
   return (
     <div className="flex flex-col w-screen">
       <div>
@@ -27,7 +75,7 @@ const FanFavorites = ({ movies }: { movies: Movie[] }) => {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="bg-gray-900 shadow-md rounded-md overflow-hidden w-48 ml-4 hover:opacity-70 transition hover:cursor-pointer"
+            className="bg-gray-900 shadow-md rounded-md overflow-hidden w-48 ml-4"
           >
             <img
               src={movie.imageUrl}

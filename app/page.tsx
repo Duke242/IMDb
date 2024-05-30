@@ -7,12 +7,13 @@ import {
 import FanFavorites from "./components/FanFavorites"
 import FeaturedToday from "./components/FeaturedToday"
 import Header from "./components/Header"
-// import MovieList from "./components/MovieList"
 import TrailerList from "./components/TrailerList"
 import VideoSection from "./components/VideoSection"
 import WhatToWatch from "./components/WhatToWatch"
 import { getMovies } from "@/libs/getMovies"
 import { getServerSession } from "next-auth"
+import { getAiringTodayTVShows } from "@/libs/getAiringTodayTVShows"
+import MovieList from "./components/MovieList"
 
 interface User {
   name: string
@@ -28,8 +29,13 @@ export default async function Home({ dehydratedState }: any) {
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
-    queryKey: ["posts"],
+    queryKey: ["movies"],
     queryFn: getMovies,
+  })
+
+  await queryClient.prefetchQuery({
+    queryKey: ["today"],
+    queryFn: getAiringTodayTVShows,
   })
 
   const session = await getServerSession()
@@ -43,7 +49,9 @@ export default async function Home({ dehydratedState }: any) {
             <div className="w-2/3 ml-14 flex-grow">
               <VideoSection />
             </div>
-            <div className="w-1/3">{/* <TrailerList /> */}</div>
+            <div className="w-1/3">
+              <TrailerList />
+            </div>
           </section>
           <section>
             <section>
@@ -53,9 +61,11 @@ export default async function Home({ dehydratedState }: any) {
               <WhatToWatch />
             </section>
             <section className="mb-14">
-              {/* <MovieList movies={movies} /> */}
+              <MovieList />
             </section>
-            <section>{/* <FanFavorites movies={movies} /> */}</section>
+            <section>
+              <FanFavorites />
+            </section>
           </section>
         </main>
       </div>
