@@ -2,8 +2,23 @@
 import { IoMdSearch, IoMdArrowDropdown } from "react-icons/io"
 import { BsBookmarkPlusFill } from "react-icons/bs"
 import { IoMenu } from "react-icons/io5"
+import { signOut } from "next-auth/react"
 
-function Header() {
+interface User {
+  name: string
+  email: string
+  image: string
+}
+
+interface Session {
+  user: User | null
+}
+
+function isUserLoggedIn(session: Session | null): boolean {
+  return session?.user !== undefined
+}
+
+function Header({ session }: { session: Session }) {
   return (
     <header className="bg-black py-3">
       <div className="container mx-auto flex items-center justify-between">
@@ -55,9 +70,21 @@ function Header() {
             <a className="flex text-white text-sm font-semibold hover:bg-gray-800 p-2 transition gap-2 rounded cursor-pointer items-center">
               <BsBookmarkPlusFill size={20} /> Watchlist
             </a>
-            <a className="text-white hover:bg-gray-800 p-2 text-sm font-semibold transition rounded cursor-pointer">
-              Sign In
-            </a>
+            {isUserLoggedIn(session) ? (
+              <button
+                onClick={() => signOut()}
+                className="text-white hover:bg-gray-800 p-2 text-sm font-semibold transition rounded cursor-pointer"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <a
+                href="http://localhost:3000/api/auth/signin"
+                className="text-white hover:bg-gray-800 p-2 text-sm font-semibold transition rounded cursor-pointer"
+              >
+                Sign In
+              </a>
+            )}
             <select className="px-2 py-1 rounded-md focus:outline-none text-white bg-black">
               <option value="en">EN</option>
               <option value="es">ES</option>

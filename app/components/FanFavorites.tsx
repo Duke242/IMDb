@@ -27,7 +27,7 @@ const FanFavorites = ({ movies }: { movies: Movie[] }) => {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="bg-gray-900 shadow-md rounded-md overflow-hidden w-48 ml-4"
+            className="bg-gray-900 shadow-md rounded-md overflow-hidden w-48 ml-4 hover:opacity-70 transition hover:cursor-pointer"
           >
             <img
               src={movie.imageUrl}
