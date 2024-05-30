@@ -12,12 +12,17 @@ type Movie = {
   trailerUrl: string
 }
 
-const MovieList = ({ movies }: { movies: Movie[] }) => {
+const FanFavorites = ({ movies }: { movies: Movie[] }) => {
   return (
     <div className="flex flex-col w-screen">
-      <h1 className="text-white text-xl font-bold border-l-4 border-yellow-500 pl-2 ml-14 h-fit mb-4">
-        Top 10 on IMDb this week
-      </h1>
+      <div>
+        <h1 className="text-white text-xl font-bold border-l-4 border-yellow-500 pl-2 ml-14 h-fit mb-2">
+          Fan Favorites
+        </h1>
+        <p className="text-gray-400 mb-4 ml-14">
+          This week's top TV and movies
+        </p>
+      </div>
       <div className="flex ml-14 bg-black">
         {movies.map((movie) => (
           <div
@@ -60,4 +65,4 @@ const MovieList = ({ movies }: { movies: Movie[] }) => {
   )
 }
 
-export default MovieList
+export default FanFavorites
